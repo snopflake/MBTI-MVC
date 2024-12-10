@@ -1,14 +1,22 @@
-<?php class Model
+<?php
+class Model
 {
-        protected $mysqli;
+    protected $mysqli;
 
-        public function __construct()
-        {
-                $dbhostname = 'localhost';
+    public function __construct()
+    {
+        $dbhostname = 'localhost';    
+        $dbusername = 'root';         
+        $dbpassword = '';            
+        $dbname = 'mbti';            
 
-                $dbusername = 'root';
-                $dbpassword = 'abcde';
-                $dbname = 'dbmvc';
-                $this->mysqli = new mysqli($dbhostname, $dbusername, $dbpassword, $dbname) or die('Database connection error!');
+        // Membuat koneksi menggunakan MySQLi
+        $this->mysqli = new mysqli($dbhostname, $dbusername, $dbpassword, $dbname);
+
+        // Periksa apakah koneksi berhasil
+        if ($this->mysqli->connect_error) {
+            die("Database connection failed: " . $this->mysqli->connect_error);
         }
+    }
 }
+?>

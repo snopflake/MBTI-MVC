@@ -5,7 +5,7 @@ class Controller
   public function loadModel($modelName)
   {
     include_once "model/Model.class.php";
-    include_once "model/$modelName.class.php";
+    include_once "model/$modelName.php";
     return new $modelName;
   }
 
