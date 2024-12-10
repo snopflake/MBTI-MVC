@@ -5,9 +5,13 @@ class MbtiController
 
     public function __construct()
     {
+        if (!isset($_SESSION['loggedin'])) {
+            header('Location: ?c=Auth&m=loginForm');
+            exit();
+        }
+
         $this->mbtiModel = new MbtiModel(); // Memanggil model
     }
-
     // Menampilkan data pada beranda
     public function index()
     {

@@ -49,13 +49,14 @@
 <body>
     <nav class="navbar">
         <div class="navbar-logo">
-            <a href="index.php">
+            <a href="?c=Mbti&m=index">
                 <img src="assets/images/logo.png" alt="Logo">
             </a>
         </div>
         <ul class="navbar-menu">
-            <li><a href="index.php">Beranda</a></li>
+            <li><a href="?c=Mbti&m=index">Beranda</a></li>
             <li><a href="?c=Mbti&m=uploadForm">Upload MBTI</a></li>
-            <li><a href="?c=Mbti&m=index">Macam MBTI</a></li>
+            <li><a href="?c=Info&m=index">Informasi</a></li>
+
         </ul>
     </nav>

@@ -1,41 +1,23 @@
 <?php
 class UserModel extends Model
 {
-    // Mengambil semua pengguna
-    public function getAllUsers()
+    public function getUserByUsername($username)
     {
-        $sql = 'SELECT * FROM users ORDER BY id DESC';
+        $username = $this->mysqli->real_escape_string($username);
+        $sql = "SELECT * FROM users WHERE username = '$username'";
+        $result = $this->mysqli->query($sql);
+
+        return $result->fetch_assoc();
+    }
+
+    public function createUser($username, $email, $password)
+    {
+        $username = $this->mysqli->real_escape_string($username);
+        $email = $this->mysqli->real_escape_string($email);
+        $password = $this->mysqli->real_escape_string($password);
+
+        $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$password')";
         return $this->mysqli->query($sql);
-    }
-
-    // Menambahkan pengguna baru
-    public function insertUser($username, $password)
-    {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "INSERT INTO users (username, password) VALUES ('$username', '$hashedPassword')";
-        $this->mysqli->query($sql);
-    }
-
-    // Mengambil pengguna berdasarkan ID
-    public function getUserById($id)
-    {
-        $sql = "SELECT * FROM users WHERE id = $id";
-        return $this->mysqli->query($sql);
-    }
-
-    // Memperbarui informasi pengguna
-    public function updateUser($id, $username, $password)
-    {
-        $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
-        $sql = "UPDATE users SET username = '$username', password = '$hashedPassword' WHERE id = $id";
-        $this->mysqli->query($sql);
-    }
-
-    // Menghapus pengguna berdasarkan ID
-    public function deleteUser($id)
-    {
-        $sql = "DELETE FROM users WHERE id = $id";
-        $this->mysqli->query($sql);
     }
 }
 ?>
