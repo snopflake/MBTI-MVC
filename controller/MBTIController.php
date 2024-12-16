@@ -19,21 +19,21 @@ class MbtiController
         include 'view/mbti/index.php';
     }
 
-    // Menampilkan detail berdasarkan ID
-    public function detail($id)
+    public function detail($id = null)
     {
         if (!$id) {
-            die("ID tidak diberikan.");
+            die("ID tidak diberikan. Pastikan URL menyertakan parameter id.");
         }
-
+    
         $mbtis = $this->mbtiModel->getById($id);
-
+    
         if (!$mbtis) {
-            die("Data tidak ditemukan.");
+            die("Data tidak ditemukan untuk ID yang diberikan.");
         }
-
-        include 'view/mbti/detail.php'; // Muat view detail
+    
+        include 'view/mbti/detail.php';
     }
+    
 
     public function uploadForm()
     {

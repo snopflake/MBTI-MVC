@@ -13,6 +13,7 @@ require_once 'controller/InfoController.php';
 
 $c = $_GET['c'] ?? 'Auth';
 $m = $_GET['m'] ?? 'loginForm';
+$id = $_GET['id'] ?? null;
 
 if (!isset($_SESSION['loggedin']) && $c !== 'Auth') {
     header('Location: ?c=Auth&m=loginForm');
@@ -24,8 +25,13 @@ $method = $m;
 
 if (class_exists($controllerClass) && method_exists($controllerClass, $method)) {
     $controllerInstance = new $controllerClass();
-    $controllerInstance->$method();
+    if ($id !== null) {
+        $controllerInstance->$method($id); 
+    } else {
+        $controllerInstance->$method(); 
+    }
 } else {
     echo "Halaman tidak ditemukan.";
 }
+
 ?>
